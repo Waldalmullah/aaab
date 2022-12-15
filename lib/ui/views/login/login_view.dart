@@ -1,76 +1,32 @@
-import 'package:aaab/app/theme/theme.dart';
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:aaab/app/utils/constants.dart';
+import 'package:aaab/ui/views/login/widgets/login_forgot_password_button.dart';
+import 'package:aaab/ui/views/login/widgets/login_logo_widget.dart';
+import 'package:aaab/ui/views/login/widgets/login_pow_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import './login_view_model.dart';
+import 'widgets/login_text_feild_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return ViewModelBuilder<LoginViewModel>.reactive(
-      viewModelBuilder: () => LoginViewModel(),
-      onModelReady: (LoginViewModel model) async => await model.init(),
-      builder: (BuildContext context, LoginViewModel model, Widget? child) {
-        return Scaffold(
-          backgroundColor: base,
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) =>
+      ViewModelBuilder<LoginViewModel>.reactive(
+        viewModelBuilder: () => LoginViewModel(context),
+        onModelReady: (LoginViewModel model) async => await model.init(),
+        builder: (BuildContext context, LoginViewModel model, Widget? child) {
+          return Scaffold(
+            backgroundColor: AppColors().backgroundColor,
+            body: ListView(
               children: [
-                SvgPicture.asset('assets/svg/cat-pow.svg'),
-                //  Image.asset(),
-                Center(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Image.asset('assets/png/cat.png'),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 100),
-                        child: Text(
-                          "Login",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: textColor, fontSize: 35),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: TextStyle(color: textColor),
-                    decoration: InputDecoration(
-                      fillColor: textField,
-                      filled: true,
-                      labelText: 'Username',
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.red),
-                    decoration: InputDecoration(
-                      // fillColor: textField,
-                      filled: true,
-                      labelText: 'Password',
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                const PowWidget(),
+                const LoginLogoWidget(),
+                const LoginTextFieldWidget(labelText: 'Username'),
+                const LoginTextFieldWidget(labelText: 'Password'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -78,48 +34,36 @@ class LoginView extends StatelessWidget {
                       style: ButtonStyle(
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(primary),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppColors().primary),
                       ),
-                      onPressed: () {},
+                      onPressed: () => model.pushSignUpRoute(),
                       child: Text(
-                        'Sign in',
-                        style: TextStyle(color: textColor),
+                        'Sign up',
+                        style: TextStyle(color: AppColors().textColor),
                       ),
                     ),
                     TextButton(
                       style: ButtonStyle(
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(primary),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppColors().primary),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        model.showSnackBar("login message");
+                      },
                       child: Text(
-                        'Sign up',
-                        style: TextStyle(color: textColor),
+                        'Login',
+                        style: TextStyle(color: AppColors().textColor),
                       ),
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: Center(
-                      child: Text(
-                        'Forgot your password?',
-                        style: TextStyle(color: textColor),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                )
+                const LoginForgotPasswordWidget()
               ],
             ),
-          ),
-        );
-      },
-    );
-  }
+          );
+        },
+      );
 }
