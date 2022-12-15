@@ -32,6 +32,7 @@ class LoginView extends StatelessWidget {
                         child: Text(
                           "Login",
                           textAlign: TextAlign.center,
+                          style: TextStyle(color: textColor, fontSize: 35),
                         ),
                       )
                     ],
@@ -40,7 +41,7 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: textColor),
                     decoration: InputDecoration(
                       fillColor: textField,
                       filled: true,
