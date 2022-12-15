@@ -1,3 +1,4 @@
+import 'package:aaab/ui/views/login/login_view.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:aaab/ui/views/home/home_view.dart';
@@ -8,7 +9,8 @@ export './router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: "View,Route",
   routes: <AutoRoute>[
-    AdaptiveRoute(page: StartupView, initial: true),
+    AdaptiveRoute(page: LoginView,initial: true),
+    AdaptiveRoute(page: StartupView),
     AdaptiveRoute(page: HomeView),
   ],
 )
