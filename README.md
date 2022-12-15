@@ -16,3 +16,7 @@ HTTP Host Availability
 
 flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
+
+
+## emulated
+pixel 5 api 28 
