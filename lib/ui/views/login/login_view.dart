@@ -19,49 +19,52 @@ class LoginView extends StatelessWidget {
         viewModelBuilder: () => LoginViewModel(context),
         onModelReady: (LoginViewModel model) async => await model.init(),
         builder: (BuildContext context, LoginViewModel model, Widget? child) {
-          return Scaffold(
-            backgroundColor: AppColors().backgroundColor,
-            body: ListView(
-              children: [
-                const PowWidget(),
-                const LoginLogoWidget(),
-                const LoginTextFieldWidget(labelText: 'Username'),
-                const LoginTextFieldWidget(labelText: 'Password'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            AppColors().primary),
+          return GestureDetector(
+            onTap: () => model.removeFocus(),
+            child: Scaffold(
+              backgroundColor: AppColors().backgroundColor,
+              body: ListView(
+                children: [
+                  const PowWidget(),
+                  const LoginLogoWidget(),
+                  const LoginTextFieldWidget(labelText: 'Username'),
+                  const LoginTextFieldWidget(labelText: 'Password'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors().primary),
+                        ),
+                        onPressed: () => model.pushSignUpRoute(),
+                        child: Text(
+                          'Sign up',
+                          style: TextStyle(color: AppColors().textColor),
+                        ),
                       ),
-                      onPressed: () => model.pushSignUpRoute(),
-                      child: Text(
-                        'Sign up',
-                        style: TextStyle(color: AppColors().textColor),
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors().primary),
+                        ),
+                        onPressed: () {
+                          model.showSnackBar("login message");
+                        },
+                        child: Text(
+                          'Login',
+                          style: TextStyle(color: AppColors().textColor),
+                        ),
                       ),
-                    ),
-                    TextButton(
-                      style: ButtonStyle(
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            AppColors().primary),
-                      ),
-                      onPressed: () {
-                        model.showSnackBar("login message");
-                      },
-                      child: Text(
-                        'Login',
-                        style: TextStyle(color: AppColors().textColor),
-                      ),
-                    ),
-                  ],
-                ),
-                const LoginForgotPasswordWidget()
-              ],
+                    ],
+                  ),
+                  const LoginForgotPasswordWidget()
+                ],
+              ),
             ),
           );
         },

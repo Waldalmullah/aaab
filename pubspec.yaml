@@ -34,8 +34,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/png/cat.png
-    - assets/svg/cat-pow.svg
+    - assets/png/
+    - assets/svg/
 #
 # Fonts Example
 #  fonts:

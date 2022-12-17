@@ -1,4 +1,3 @@
-
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
@@ -8,6 +7,8 @@ class PowWidget extends StatelessWidget {
   const PowWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      SvgPicture.asset('assets/svg/cat-pow.svg', height: 180);
+  Widget build(BuildContext context) => SvgPicture.asset(
+        'assets/svg/cat-pow.svg',
+        // height: 180,
+      );
 }
