@@ -6,5 +6,4 @@ class LoginViewModel extends BaseViewModel {
 
   Future<void> init() async {}
 
-  void pushSignUpRoute() => pushNamed(const SignUpRoute().path);
 }

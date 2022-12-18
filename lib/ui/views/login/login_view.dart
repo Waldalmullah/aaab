@@ -39,7 +39,7 @@ class LoginView extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.all<Color>(
                               AppColors().primary),
                         ),
-                        onPressed: () => model.pushSignUpRoute(),
+                        onPressed: () {},
                         child: Text(
                           'Sign up',
                           style: TextStyle(color: AppColors().textColor),

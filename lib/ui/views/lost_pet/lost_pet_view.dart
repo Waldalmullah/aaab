@@ -14,7 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
 import './lost_pet_view_model.dart';
 
 class LostPetView extends StatelessWidget {
-  LostPetView({
+  const LostPetView({
     Key? key,
   }) : super(key: key);
 
