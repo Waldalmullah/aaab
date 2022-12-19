@@ -9,6 +9,8 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:aaab/ui/views/home/home_view.dart';
 
+import '../../ui/views/create_post/create_post_view.dart';
+
 export './router.gr.dart';
 
 @AdaptiveAutoRouter(
@@ -21,7 +23,8 @@ export './router.gr.dart';
     AdaptiveRoute(page: SingUpView),
     AdaptiveRoute(page: FoundItView),
     AdaptiveRoute(page: WantItView),
-    AdaptiveRoute(page: AboutUsView, initial: true),
+    AdaptiveRoute(page: AboutUsView),
+    AdaptiveRoute(page: CreatePostView, initial: true),
   ],
 )
 class $AppRouter {}

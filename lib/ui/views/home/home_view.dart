@@ -3,8 +3,6 @@ import 'package:aaab/ui/widgets/dumb_widgets/pet_dashboard_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import 'package:flutter_svg/flutter_svg.dart' show SvgPicture;
-
 import '../../../app/theme/AppColors.dart';
 import './home_view_model.dart';
 
