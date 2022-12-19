@@ -1,3 +1,4 @@
+import 'package:aaab/ui/views/about_us/about_us_view.dart';
 import 'package:aaab/ui/views/found_it/found_it_view.dart';
 import 'package:aaab/ui/views/login/login_view.dart';
 import 'package:aaab/ui/views/lost_pet/lost_pet_view.dart';
@@ -19,7 +20,8 @@ export './router.gr.dart';
     AdaptiveRoute(page: LostPetView),
     AdaptiveRoute(page: SingUpView),
     AdaptiveRoute(page: FoundItView),
-    AdaptiveRoute(page: WantItView, initial: true),
+    AdaptiveRoute(page: WantItView),
+    AdaptiveRoute(page: AboutUsView, initial: true),
   ],
 )
 class $AppRouter {}
