@@ -1,9 +1,7 @@
-import 'package:aaab/app/router/router.dart';
-import 'package:aaab/app/core/custom_base_view_model.dart';
+import 'package:aaab/app/core/base_view_model.dart';
 
 class LoginViewModel extends BaseViewModel {
   LoginViewModel(context) : super(context);
 
   Future<void> init() async {}
-
 }

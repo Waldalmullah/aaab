@@ -1,4 +1,4 @@
-import 'package:aaab/app/core/custom_base_view_model.dart';
+import 'package:aaab/app/core/base_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

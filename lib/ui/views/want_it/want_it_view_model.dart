@@ -1,4 +1,4 @@
-import 'package:aaab/app/core/custom_base_view_model.dart';
+import 'package:aaab/app/core/base_view_model.dart';
 
 class WantItViewModel extends BaseViewModel {
   WantItViewModel(context) : super(context);

@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:aaab/app/core/base_view_model.dart';
 import 'package:aaab/app/router/router.dart';
-import 'package:aaab/app/core/custom_base_view_model.dart';
 
 class SplashViewModel extends BaseViewModel {
   SplashViewModel(context) : super(context);
