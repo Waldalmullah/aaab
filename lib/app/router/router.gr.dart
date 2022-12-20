@@ -102,7 +102,7 @@ class AppRouter extends _i10.RootStackRouter {
         ),
         _i10.RouteConfig(
           LoginRoute.name,
-          path: '/login-view',
+          path: '/',
         ),
         _i10.RouteConfig(
           HomeRoute.name,
@@ -130,7 +130,7 @@ class AppRouter extends _i10.RootStackRouter {
         ),
         _i10.RouteConfig(
           CreatePostRoute.name,
-          path: '/',
+          path: '/create-post-view',
         ),
       ];
 }
@@ -153,7 +153,7 @@ class LoginRoute extends _i10.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
-          path: '/login-view',
+          path: '/',
         );
 
   static const String name = 'LoginRoute';
@@ -237,7 +237,7 @@ class CreatePostRoute extends _i10.PageRouteInfo<void> {
   const CreatePostRoute()
       : super(
           CreatePostRoute.name,
-          path: '/',
+          path: '/create-post-view',
         );
 
   static const String name = 'CreatePostRoute';

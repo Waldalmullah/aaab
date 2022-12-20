@@ -17,14 +17,14 @@ export './router.gr.dart';
   replaceInRouteName: "View,Route",
   routes: <AutoRoute>[
     AdaptiveRoute(page: SplashView),
-    AdaptiveRoute(page: LoginView),
+    AdaptiveRoute(page: LoginView, initial: true),
     AdaptiveRoute(page: HomeView),
     AdaptiveRoute(page: LostPetView),
     AdaptiveRoute(page: SingUpView),
     AdaptiveRoute(page: FoundItView),
     AdaptiveRoute(page: WantItView),
     AdaptiveRoute(page: AboutUsView),
-    AdaptiveRoute(page: CreatePostView, initial: true),
+    AdaptiveRoute(page: CreatePostView),
   ],
 )
 class $AppRouter {}

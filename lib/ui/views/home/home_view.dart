@@ -174,7 +174,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Row _welcome_header(String name) {
-    // Mohamed Mukhtar
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
