@@ -14,8 +14,7 @@ class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      ViewModelBuilder<LoginViewModel>.reactive(
+  Widget build(BuildContext context) => ViewModelBuilder<LoginViewModel>.reactive(
         viewModelBuilder: () => LoginViewModel(context),
         onModelReady: (LoginViewModel model) async => await model.init(),
         builder: (BuildContext context, LoginViewModel model, Widget? child) {
@@ -34,10 +33,8 @@ class LoginView extends StatelessWidget {
                     children: [
                       TextButton(
                         style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              AppColors().primary),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(AppColors().primary),
                         ),
                         onPressed: () {},
                         child: Text(
@@ -47,12 +44,12 @@ class LoginView extends StatelessWidget {
                       ),
                       TextButton(
                         style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              AppColors().primary),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(AppColors().primary),
                         ),
                         onPressed: () {
+                          //TODO Remove Router Code If Went to Production
+                          model.pushNamed('/profile-view');
                           model.showSnackBar("login message");
                         },
                         child: Text(
