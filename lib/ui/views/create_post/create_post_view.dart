@@ -26,7 +26,7 @@ class CreatePostView extends StatelessWidget {
         return GestureDetector(
           onTap: () => model.removeFocus(),
           child: Scaffold(
-            appBar: _appBar(),
+            appBar: _appBar(context),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -55,7 +55,7 @@ class CreatePostView extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: model.isValid ? () => model.onSubmit() : null,
+        onTap: (model.isValid ? () => model.onSubmit() : null),
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 10,
@@ -77,8 +77,13 @@ class CreatePostView extends StatelessWidget {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(context) {
     return AppBar(
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back)),
       title: const Text(
         'Create Post',
         style: TextStyle(

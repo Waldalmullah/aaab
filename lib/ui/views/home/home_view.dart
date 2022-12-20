@@ -1,15 +1,24 @@
 import 'package:aaab/ui/widgets/dumb_widgets/activity_dashboard_widget.dart';
 import 'package:aaab/ui/widgets/dumb_widgets/pet_dashboard_widget.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/theme/AppColors.dart';
 import './home_view_model.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int _currentIndex = 0;
+  int _counter = 0;
 
   @override
   Widget build(BuildContext context) =>
@@ -18,6 +27,41 @@ class HomeView extends StatelessWidget {
         onModelReady: (HomeViewModel model) async => await model.init(),
         builder: (BuildContext context, HomeViewModel model, Widget? child) {
           return Scaffold(
+            bottomNavigationBar: BottomNavyBar(
+              selectedIndex: _currentIndex,
+              showElevation: true,
+              itemCornerRadius: 24,
+              curve: Curves.easeIn,
+              onItemSelected: (index) => setState(() => _currentIndex = index),
+              items: <BottomNavyBarItem>[
+                BottomNavyBarItem(
+                  icon: const Icon(Icons.home),
+                  title: const Text('Home'),
+                  activeColor: AppColors.maroni,
+                  textAlign: TextAlign.center,
+                ),
+                BottomNavyBarItem(
+                  icon: const Icon(Icons.post_add),
+                  title: const Text('Create Post'),
+                  activeColor: AppColors.maroni,
+                  textAlign: TextAlign.center,
+                ),
+                BottomNavyBarItem(
+                  icon: const Icon(Icons.notifications_on),
+                  title: const Text(
+                    'Activity',
+                  ),
+                  activeColor: AppColors.maroni,
+                  textAlign: TextAlign.center,
+                ),
+                BottomNavyBarItem(
+                  icon: const Icon(Icons.person),
+                  title: const Text('Profile'),
+                  activeColor: AppColors.maroni,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
