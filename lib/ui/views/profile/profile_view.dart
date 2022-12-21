@@ -31,35 +31,47 @@ class ProfileView extends StatelessWidget {
                         ),
                         ProfileItemCard(
                           title: 'Shelter',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/shelter-view');
+                          },
                           suffixIcon: Icons.security_outlined,
                         ),
                         ProfileItemCard(
                           title: 'My posts',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/post-activity-view');
+                          },
                           suffixIcon: Icons.notifications_active_rounded,
                         ),
                         ProfileItemCard(
                           title: 'Notification settings',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/post-activity-view');
+                          },
                           suffixIcon: Icons.notifications_rounded,
                         ),
                         ProfileItemCard(
                           title: 'Donations',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/shelter-view');
+                          },
                           suffixIcon: Icons.monetization_on_rounded,
                         ),
                         ProfileItemCard(
                           title: 'Chat bot',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/chat-bot-view');
+                          },
                           suffixIcon: Icons.chat,
                         ),
                         ProfileItemCard(
                           title: 'About us',
-                          action: () {},
+                          action: () {
+                            model.pushNamed('/about-us-view');
+                          },
                           suffixIcon: Icons.ios_share,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
@@ -67,11 +79,16 @@ class ProfileView extends StatelessWidget {
                           width: 180,
                           child: FloatingActionButton(
                             backgroundColor: Colors.red[300],
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0))),
                             elevation: 0,
                             child: Text(
                               'Logout',
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                             onPressed: () {
                               //TODO Logout
