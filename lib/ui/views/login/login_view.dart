@@ -49,7 +49,7 @@ class LoginView extends StatelessWidget {
                         ),
                         onPressed: () {
                           //TODO Remove Router Code If Went to Production
-                          model.pushNamed('/profile-view');
+                          model.pushNamed('/adoption-pet-view');
                           model.showSnackBar("login message");
                         },
                         child: Text(
