@@ -17,7 +17,8 @@ class ProfileView extends StatelessWidget {
       onModelReady: (ProfileViewModel model) async => await model.init(),
       builder: (BuildContext context, ProfileViewModel model, Widget? child) {
         return Scaffold(
-          bottomNavigationBar: BottomNavyBarWidget(currentIndex: model.currentIndex),
+          bottomNavigationBar:
+              BottomNavyBarWidget(currentIndex: model.currentIndex),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -27,10 +28,8 @@ class ProfileView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
                       children: [
-                        ProfileTopCard(),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        const ProfileTopCard(),
+                        const SizedBox(height: 15),
                         ProfileItemCard(
                           title: 'Shelter',
                           action: () {

@@ -12,6 +12,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:aaab/app/models/Post.dart' as _i20;
+import 'package:aaab/app/models/Shelter.dart' as _i21;
 import 'package:aaab/ui/views/about_us/about_us_view.dart' as _i8;
 import 'package:aaab/ui/views/adoption_pet/adoption_pet_view.dart' as _i12;
 import 'package:aaab/ui/views/chat_bot/chat_bot_view.dart' as _i14;
@@ -158,9 +159,13 @@ class AppRouter extends _i18.RootStackRouter {
       );
     },
     ShelterDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<ShelterDetailsRouteArgs>();
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i16.ShelterDetailsView(),
+        child: _i16.ShelterDetailsView(
+          shelter: args.shelter,
+          key: args.key,
+        ),
         opaque: true,
       );
     },
@@ -498,14 +503,36 @@ class ShelterRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.ShelterDetailsView]
-class ShelterDetailsRoute extends _i18.PageRouteInfo<void> {
-  const ShelterDetailsRoute()
-      : super(
+class ShelterDetailsRoute extends _i18.PageRouteInfo<ShelterDetailsRouteArgs> {
+  ShelterDetailsRoute({
+    required _i21.Shelter shelter,
+    _i19.Key? key,
+  }) : super(
           ShelterDetailsRoute.name,
           path: '/shelter-details-view',
+          args: ShelterDetailsRouteArgs(
+            shelter: shelter,
+            key: key,
+          ),
         );
 
   static const String name = 'ShelterDetailsRoute';
+}
+
+class ShelterDetailsRouteArgs {
+  const ShelterDetailsRouteArgs({
+    required this.shelter,
+    this.key,
+  });
+
+  final _i21.Shelter shelter;
+
+  final _i19.Key? key;
+
+  @override
+  String toString() {
+    return 'ShelterDetailsRouteArgs{shelter: $shelter, key: $key}';
+  }
 }
 
 /// generated route for
