@@ -12,7 +12,7 @@ class Post {
   final PostStatus? status;
   final String? description;
   final int? likes;
-  final DocumentReference? userRef;
+  final DocumentReference? user;
 
   Post(
       {this.title,
@@ -21,7 +21,7 @@ class Post {
       this.status,
       this.description,
       this.likes,
-      this.userRef});
+      this.user});
 
   Post copyWith({
     String? title,
@@ -30,7 +30,7 @@ class Post {
     PostStatus? status,
     String? description,
     int? likes,
-    DocumentReference? userRef,
+    DocumentReference? user,
   }) =>
       Post(
         title: title ?? this.title,
@@ -39,17 +39,17 @@ class Post {
         status: status ?? this.status,
         description: description ?? this.description,
         likes: likes ?? this.likes,
-        userRef: userRef ?? this.userRef,
+        user: user ?? this.user,
       );
 
   Map<String, dynamic> toMap() => {
         'title': title,
         'photo': photo,
         'petName': petName,
-        'status': status.toString(),
+        'status': status?.name ?? PostStatus.NONE,
         'description': description,
         'likes': likes,
-        'userRef': userRef,
+        'user': user,
       };
 
   String toJson() => json.encode(toMap());
@@ -65,14 +65,14 @@ class Post {
       status: PostStatus.values
           .firstWhere((e) => describeEnum(e) == map['status'].toUpperCase()),
       description: map['description'],
-      userRef: map['userRef'],
+      user: map['user'],
     );
   }
   factory Post.fromJson(String source) => Post.fromMap(json.decode(source));
 
   @override
   String toString() =>
-      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, userRef: $userRef, likes: $likes)';
+      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, user: $user, likes: $likes)';
 
   @override
   bool operator ==(Object other) {
@@ -83,7 +83,7 @@ class Post {
         other.petName == petName &&
         other.status == status &&
         other.likes == likes &&
-        other.userRef == userRef &&
+        other.user == user &&
         other.description == description;
   }
 
@@ -93,7 +93,7 @@ class Post {
       photo.hashCode ^
       petName.hashCode ^
       status.hashCode ^
-      userRef.hashCode ^
+      user.hashCode ^
       likes.hashCode ^
       description.hashCode;
 }

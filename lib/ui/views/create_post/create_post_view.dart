@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/widgets/dumb_widgets/text_field.dart';
 import 'package:aaab/ui/widgets/smart_widgets/bottom_navy_bar_widget.dart';
@@ -25,7 +27,7 @@ class CreatePostView extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    _addImageWidget(model),
+                    _addImageWidget(context, model),
                     const SizedBox(height: 16),
                     _textFields(model),
                     const SizedBox(height: 16),
@@ -187,12 +189,37 @@ class CreatePostView extends StatelessWidget {
     );
   }
 
-  Material _addImageWidget(CreatePostViewModel model) {
+  Material _addImageWidget(BuildContext context, CreatePostViewModel model) {
     return Material(
       borderRadius: BorderRadius.circular(25),
       color: Colors.grey.shade200,
       child: InkWell(
-        onTap: () => model.onPicClick(),
+        onTap: () async {
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) => ListView(
+              shrinkWrap: true,
+              children: [
+                ListTile(
+                  onTap: () {
+                    model.goBack();
+                    model.openGallery();
+                  },
+                  leading: const Icon(Icons.photo),
+                  title: const Text('Gallery'),
+                ),
+                ListTile(
+                  onTap: () {
+                    model.goBack();
+                    model.openCamera();
+                  },
+                  leading: const Icon(Icons.camera),
+                  title: const Text('Camera'),
+                ),
+              ],
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(25),
         child: Container(
           width: double.infinity,
@@ -203,15 +230,24 @@ class CreatePostView extends StatelessWidget {
               color: Colors.grey.shade400,
             ),
           ),
-          child: const Center(
-            child: Text(
-              'Add Photo +',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-          ),
+          child: model.image != null
+              ? Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: FileImage(File(model.image!.path))),
+                  ),
+                )
+              : const Center(
+                  child: Text(
+                    'Add Photo +',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
         ),
       ),
     );

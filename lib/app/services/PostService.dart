@@ -11,9 +11,11 @@ class PostService {
   final CollectionReference<Map<String, dynamic>> _collection =
       FirebaseFirestore.instance.collection('posts');
 
-  Future<void> createPost(Post post) async => await _collection
+  Future<String> createPost(Post post) async => await _collection
       .add(post.toMap())
-      .then((value) => print('A new post added !'))
+      .then((value){
+        return 'A new post added !';
+      })
       .catchError((e) {});
 
   Future<List<Post?>> getPosts() async {
@@ -34,7 +36,7 @@ class PostService {
     await _collection.get().then((QuerySnapshot<Map<String, dynamic>> values) async {
       for (QueryDocumentSnapshot<Map<String, dynamic>> doc in values.docs) {
         Post _post = Post.fromMap(doc.data());
-        DocumentSnapshot _userDoc = await ((doc.data()['user' ]) as DocumentReference).get();
+        DocumentSnapshot _userDoc = await ((doc.data()['user']) as DocumentReference).get();
         User _user = User.fromMap(_userDoc.data() as Map<String, dynamic>);
 
         if ((_authService.user?.email ?? '') == _user.email) {

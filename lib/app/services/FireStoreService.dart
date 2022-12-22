@@ -11,9 +11,9 @@ import '../locator/locator.dart';
 
 @lazySingleton
 class FireStoreService {
+  final FirebaseFirestore instance = FirebaseFirestore.instance;
+
   CollectionReference<Map<String, dynamic>> animalsSheltersCollection =
       FirebaseFirestore.instance.collection('animals_shelters');
-
-
 
 }

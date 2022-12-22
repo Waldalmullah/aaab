@@ -70,29 +70,35 @@ class _HomeViewState extends State<HomeView> {
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
-            child: ListView.separated(
-              itemCount: model.posts?.length ?? 0,
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                Post _post = model.posts?[index] ?? Post();
-                print(_post);
-                return ActivityDashboardWidget(
-                  name: _post.petName ?? '-',
-                  description: _post.description ?? '-',
-                  img: _post.photo ??
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-                  onTap: () => {
-                    if(_post.status == PostStatus.LOST){
-                      model.pushLostIt(_post)
-                    }
-                  },
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 16,
-              ),
-            ),
+            child: model.posts!.isEmpty
+                ? const Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Center(
+                      child: Text('No posts yet'),
+                    ),
+                  )
+                : ListView.separated(
+                    itemCount: model.posts?.length ?? 0,
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      Post _post = model.posts?[index] ?? Post();
+                      print(_post);
+                      return ActivityDashboardWidget(
+                        name: _post.petName ?? '-',
+                        description: _post.description ?? '-',
+                        img: _post.photo ??
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+                        onTap: () => {
+                          if (_post.status == PostStatus.LOST)
+                            {model.pushLostIt(_post)}
+                        },
+                      );
+                    },
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 16,
+                    ),
+                  ),
           ),
         ),
       ],
@@ -125,30 +131,34 @@ class _HomeViewState extends State<HomeView> {
             : SizedBox(
                 height: 165,
                 width: double.infinity,
-                child: ListView.separated(
-                  itemCount: model.myPosts!.length,
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    Post _pet = model.myPosts![index]!;
-                    return Padding(
-                      padding: index == 0
-                          ? const EdgeInsets.only(left: 16)
-                          : (index == 4
-                              ? const EdgeInsets.only(right: 16)
-                              : const EdgeInsets.all(0)),
-                      child: PetDashboardWidget(
-                        name: _pet.petName ?? '-',
-                        img: _pet.photo ?? '',
-                        onTap: () => {},
+                child: model.myPosts!.isEmpty
+                    ? const Center(
+                        child: Text('no pets'),
+                      )
+                    : ListView.separated(
+                        itemCount: model.myPosts!.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          Post _pet = model.myPosts![index]!;
+                          return Padding(
+                            padding: index == 0
+                                ? const EdgeInsets.only(left: 16)
+                                : (index == 4
+                                    ? const EdgeInsets.only(right: 16)
+                                    : const EdgeInsets.all(0)),
+                            child: PetDashboardWidget(
+                              name: _pet.petName ?? '-',
+                              img: _pet.photo ?? '',
+                              onTap: () => {},
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const SizedBox(
+                          width: 20,
+                        ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                    width: 20,
-                  ),
-                ),
               ),
       ],
     );

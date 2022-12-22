@@ -29,12 +29,18 @@ class SingUpImage extends StatelessWidget {
                     shrinkWrap: true,
                     children: [
                       ListTile(
-                        onTap: () => model.openGallery(),
+                        onTap: () {
+                          model.goBack();
+                          model.openGallery();
+                        },
                         leading: const Icon(Icons.photo),
                         title: const Text('Gallery'),
                       ),
                       ListTile(
-                        onTap: () => model.openCamera(),
+                        onTap: () {
+                          model.goBack();
+                          model.openCamera();
+                        },
                         leading: const Icon(Icons.camera),
                         title: const Text('Camera'),
                       ),
