@@ -6,6 +6,7 @@ import 'package:aaab/ui/views/found_it/found_it_view.dart';
 import 'package:aaab/ui/views/home/home_view.dart';
 import 'package:aaab/ui/views/login/login_view.dart';
 import 'package:aaab/ui/views/lost_pet/lost_pet_view.dart';
+import 'package:aaab/ui/views/notification_activity/notification_activity_view.dart';
 import 'package:aaab/ui/views/post_activity/post_activity_view.dart';
 import 'package:aaab/ui/views/profile/profile_view.dart';
 import 'package:aaab/ui/views/shelter/shelter_view.dart';
@@ -22,8 +23,8 @@ export './router.gr.dart';
 @AdaptiveAutoRouter(
   replaceInRouteName: "View,Route",
   routes: <AutoRoute>[
-    AdaptiveRoute(page: SplashView),
-    AdaptiveRoute(page: LoginView, initial: true),
+    AdaptiveRoute(page: SplashView, initial: true),
+    AdaptiveRoute(page: LoginView),
     AdaptiveRoute(page: HomeView),
     AdaptiveRoute(page: LostPetView),
     AdaptiveRoute(page: SingUpView),
@@ -38,6 +39,8 @@ export './router.gr.dart';
     AdaptiveRoute(page: ChatBotView),
     AdaptiveRoute(page: ShelterView),
     AdaptiveRoute(page: ShelterDetailsView),
+    AdaptiveRoute(page: NotificationActivityView),
+    AdaptiveRoute(page: LostPetView),
   ],
 )
 class $AppRouter {}

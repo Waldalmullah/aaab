@@ -1,4 +1,4 @@
-import 'package:aaab/app/theme/AppColors.dart';
+import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/views/finding_pet/widgets/finder_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';

@@ -7,10 +7,12 @@ class SingUpTextFieldWidget extends StatelessWidget {
     required this.title,
     required this.model,
     required this.controller,
+    this.obscureText,
   }) : super(key: key);
 
   final String title;
   final SingUpViewModel model;
+  final bool? obscureText;
   final TextEditingController controller;
 
   @override
@@ -30,6 +32,7 @@ class SingUpTextFieldWidget extends StatelessWidget {
           ),
           TextField(
             controller: controller,
+            obscureText: obscureText ?? false,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),

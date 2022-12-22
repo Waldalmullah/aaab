@@ -1,17 +1,18 @@
-import 'package:aaab/app/theme/AppColors.dart';
+import 'package:aaab/app/models/User.dart';
+import 'package:aaab/app/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTopCard extends StatelessWidget {
-  const ProfileTopCard({Key? key}) : super(key: key);
+  const ProfileTopCard({Key? key, this.user}) : super(key: key);
+
+  final User? user;
 
   @override
   Widget build(BuildContext context) {
-    //TODO ACTUAL TIME OF POST
-    String date = DateTime.now().day.toString() + '/' + DateTime.now().month.toString() + '/' + DateTime.now().year.toString() + ' - ' + DateTime.now().hour.toString() + ':' + DateTime.now().minute.toString();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container(
+      child: SizedBox(
         height: 100,
         width: double.infinity,
         child: Padding(
@@ -19,32 +20,41 @@ class ProfileTopCard extends StatelessWidget {
           child: Center(
             child: Row(
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn9pdTSmjBgAb8SkBRQzWoLSctU30pe2SFZg&usqp=CAU'), fit: BoxFit.fill),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
+                user?.image != null
+                    ? Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(user!.image!),
+                              fit: BoxFit.fill),
+                          shape: BoxShape.circle,
+                        ),
+                      )
+                    : Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(.5),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                const SizedBox(width: 30),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Username',
-                      style: TextStyle(
+                      user?.email ?? '-',
+                      style: const TextStyle(
                         color: AppColors.maroni,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'user_email',
-                      style: TextStyle(
+                      user?.email ?? '-',
+                      style: const TextStyle(
                         color: AppColors.maroni,
                         fontSize: 12,
                         fontWeight: FontWeight.normal,

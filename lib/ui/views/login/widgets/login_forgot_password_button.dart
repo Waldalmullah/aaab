@@ -12,12 +12,12 @@ class LoginForgotPasswordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 15),
           child: Center(
             child: Text(
               'Forgot your password?',
-              style: TextStyle(color: AppColors().textColor),
+              style: TextStyle(color: AppColors.textColor),
               textAlign: TextAlign.center,
             ),
           ),

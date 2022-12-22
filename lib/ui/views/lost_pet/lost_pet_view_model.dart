@@ -1,33 +1,35 @@
 import 'package:aaab/app/core/base_view_model.dart';
 import 'package:aaab/app/models/Post.dart';
 import 'package:aaab/app/models/PostStatus.dart';
+import 'package:aaab/app/router/router.dart';
+import 'package:auto_route/auto_route.dart';
 
 class LostPetViewModel extends BaseViewModel {
-  LostPetViewModel(context) : super(context);
+  LostPetViewModel(context, post) : super(context) {
+    _post = post;
+  }
   Future<void> init() async {}
 
   void toggleLike() {
-    if (_hasliked) {
-      _numberOfLikes++;
-    } else {
-      _numberOfLikes--;
-    }
+    int likes = _post.likes ?? 0;
+    // TODO
+    // if (_hasliked) {
+    //   _post = _post.copyWith(likes: likes++);
+    // } else {
+    //   _post = _post.copyWith(likes: likes--);
+    // }
     _hasliked = !_hasliked;
     notifyListeners();
   }
 
-  final Post _post = Post(
-      description:
-          'A cat has been Missing recently in Janabiya, its brown, long tail, blue eyes, A cat has been Missing recently in Janabiya, its brown, long tail, blue eyes, A cat has been Missing recently in Janabiya, its brown, long tail, blue eyes....',
-      title: "title",
-      petName: "Sameer",
-      photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-      status: PostStatus.ABANDONED);
-  Post get post => _post;
-
-  int _numberOfLikes = 5;
-  int get numberOfLikes => 5;
-
   bool _hasliked = false;
   bool get hasliked => _hasliked;
+
+  late Post _post;
+  Post get post => _post;
+
+
+  void pushFoundIt() => push(FoundItRoute(post: _post));
+  void pushWantIt() => push(FoundItRoute(post: _post));
+
 }

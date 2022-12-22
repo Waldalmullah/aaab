@@ -16,11 +16,11 @@ class WantItButtonWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: SizedBox(
               width: MediaQuery.of(context).size.width - 70,
-              child: Text(
+              child: const Text(
                 "Want It!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors().textColor,
+                  color: AppColors.textColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

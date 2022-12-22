@@ -11,15 +11,16 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) =>
       ViewModelBuilder<SplashViewModel>.reactive(
         viewModelBuilder: () => SplashViewModel(context),
-        onModelReady: (SplashViewModel model) async => await model.init(),
+        onModelReady: (SplashViewModel model) async => model.init(),
         builder: (BuildContext context, SplashViewModel model, Widget? child) {
           return Scaffold(
+            backgroundColor: Colors.white,
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/png/cat.png'),
-                  CircularProgressIndicator(color: AppColors().primary),
+                  const CircularProgressIndicator(color: AppColors.primary),
                 ],
               ),
             ),

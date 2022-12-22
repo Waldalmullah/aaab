@@ -14,47 +14,48 @@ class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ViewModelBuilder<LoginViewModel>.reactive(
+  Widget build(BuildContext context) =>
+      ViewModelBuilder<LoginViewModel>.reactive(
         viewModelBuilder: () => LoginViewModel(context),
         onModelReady: (LoginViewModel model) async => await model.init(),
         builder: (BuildContext context, LoginViewModel model, Widget? child) {
           return GestureDetector(
             onTap: () => model.removeFocus(),
             child: Scaffold(
-              backgroundColor: AppColors().backgroundColor,
+              backgroundColor: AppColors.backgroundColor,
               body: ListView(
                 children: [
                   const PowWidget(),
                   const LoginLogoWidget(),
-                  const LoginTextFieldWidget(labelText: 'Username'),
-                  const LoginTextFieldWidget(labelText: 'Password'),
+                  LoginTextFieldWidget(labelText: 'Username', controller: model.emailController,),
+                  LoginTextFieldWidget(labelText: 'Password', controller: model.passwordController, obscureText: true),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextButton(
                         style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(AppColors().primary),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors.primary),
                         ),
-                        onPressed: () {},
-                        child: Text(
+                        onPressed: () => model.pushSingUp(),
+                        child: const Text(
                           'Sign up',
-                          style: TextStyle(color: AppColors().textColor),
+                          style: TextStyle(color: AppColors.textColor),
                         ),
                       ),
                       TextButton(
                         style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(AppColors().primary),
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors.primary),
                         ),
-                        onPressed: () {
-                          //TODO Remove Router Code If Went to Production
-                          model.pushNamed('/adoption-pet-view');
-                          model.showSnackBar("login message");
-                        },
+                        onPressed: () => model.doLogin(),
                         child: Text(
                           'Login',
-                          style: TextStyle(color: AppColors().textColor),
+                          style: TextStyle(color: AppColors.textColor),
                         ),
                       ),
                     ],

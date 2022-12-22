@@ -1,9 +1,9 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/views/adoption_pet/widgets/adopter_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import './adoption_pet_view_model.dart';
-import '../../../app/theme/AppColors.dart';
 
 class AdoptionPetView extends StatelessWidget {
   const AdoptionPetView({Key? key}) : super(key: key);

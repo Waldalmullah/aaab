@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:aaab/app/locator/locator.dart';
 import 'package:aaab/app/utils/constants.dart';
@@ -18,15 +19,18 @@ abstract class BaseViewModel extends stacked.BaseViewModel {
 
   // Navigation
   void goBack() => _routerService.router.pop();
+  void canPop(String path) => _routerService.router.canPop();
+  void navigateBack() => _routerService.router.navigateBack();
+  void push(PageRouteInfo page) => _routerService.router.push(page);
   void pushNamed(String path) => _routerService.router.pushNamed(path);
   void replaceNamed(String path) => _routerService.router.replaceNamed(path);
 
   // SnackBar
   void showSnackBar(String message, {Duration? duration}) {
     ScaffoldMessenger.of(_context).showSnackBar(SnackBar(
-      backgroundColor: AppColors().primary,
+      backgroundColor: AppColors.primary,
       duration: duration ?? const Duration(seconds: 1),
-      content: Text(message, style: TextStyle(color: AppColors().textColor)),
+      content: Text(message, style: TextStyle(color: AppColors.textColor)),
     ));
   }
 }

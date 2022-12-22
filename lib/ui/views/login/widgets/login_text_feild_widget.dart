@@ -5,9 +5,11 @@ class LoginTextFieldWidget extends StatelessWidget {
   const LoginTextFieldWidget({
     this.controller,
     this.labelText,
+    this.obscureText,
     Key? key,
   }) : super(key: key);
 
+  final bool? obscureText;
   final String? labelText;
   final TextEditingController? controller;
 
@@ -17,8 +19,9 @@ class LoginTextFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         controller: controller,
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
-          fillColor: AppColors().textField,
+          fillColor: AppColors.textField,
           filled: true,
           labelText: labelText,
           enabledBorder: InputBorder.none,

@@ -1,3 +1,4 @@
+import 'package:aaab/app/models/Post.dart';
 import 'package:aaab/ui/views/want_it/widgets/want_it_about_me.dart';
 import 'package:aaab/ui/views/want_it/widgets/want_it_button.dart';
 import 'package:aaab/ui/views/want_it/widgets/want_it_header.dart';
@@ -8,7 +9,12 @@ import 'package:stacked/stacked.dart';
 import './want_it_view_model.dart';
 
 class WantItView extends StatelessWidget {
-  const WantItView({Key? key}) : super(key: key);
+  const WantItView({
+    required this.post,
+    Key? key,
+  }) : super(key: key);
+
+  final Post post;
 
   @override
   Widget build(BuildContext context) {

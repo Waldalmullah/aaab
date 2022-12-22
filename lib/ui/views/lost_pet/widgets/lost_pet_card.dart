@@ -17,7 +17,7 @@ class LostPetCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 50,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: AppColors().primary.withOpacity(.5),
+          color: AppColors.primary.withOpacity(.5),
         ),
         child: Column(children: [
           Row(
@@ -27,7 +27,7 @@ class LostPetCard extends StatelessWidget {
                 child: Text(
                   model.post.petName ?? '-',
                   style: TextStyle(
-                      color: AppColors().textColor,
+                      color: AppColors.textColor,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -58,14 +58,14 @@ class LostPetCard extends StatelessWidget {
                 child: Text(
                   'Status:',
                   style: TextStyle(
-                      color: AppColors().textColor,
+                      color: AppColors.textColor,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               Text(
                 model.post.status.toString().substring(11),
                 style: TextStyle(
-                    color: AppColors().textColor, fontWeight: FontWeight.bold),
+                    color: AppColors.textColor, fontWeight: FontWeight.bold),
               ),
             ],
           ),

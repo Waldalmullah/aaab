@@ -1,11 +1,8 @@
-import 'dart:ui';
-
-import 'package:aaab/app/theme/AppColors.dart';
+import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/widgets/dumb_widgets/text_field.dart';
+import 'package:aaab/ui/widgets/smart_widgets/bottom_navy_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../sing_up/widgets/sing_up_text_field.dart';
 import './create_post_view_model.dart';
 
 class CreatePostView extends StatelessWidget {
@@ -15,17 +12,13 @@ class CreatePostView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreatePostViewModel>.reactive(
       viewModelBuilder: () => CreatePostViewModel(context),
-      onModelReady: (CreatePostViewModel model) async {
-        await model.init();
-      },
-      builder: (
-        BuildContext context,
-        CreatePostViewModel model,
-        Widget? child,
-      ) {
+      onModelReady: (CreatePostViewModel model) async => await model.init(),
+      builder:
+          (BuildContext context, CreatePostViewModel model, Widget? child) {
         return GestureDetector(
           onTap: () => model.removeFocus(),
           child: Scaffold(
+            bottomNavigationBar: BottomNavyBarWidget(currentIndex: 1),
             appBar: _appBar(context),
             body: SingleChildScrollView(
               child: Padding(
@@ -79,11 +72,6 @@ class CreatePostView extends StatelessWidget {
 
   AppBar _appBar(context) {
     return AppBar(
-      leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back)),
       title: const Text(
         'Create Post',
         style: TextStyle(

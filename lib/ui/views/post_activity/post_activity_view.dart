@@ -1,11 +1,12 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/views/post_activity/widgets/post_activity_card.dart';
 import 'package:aaab/ui/views/post_activity/widgets/post_activity_header.dart';
+import 'package:aaab/ui/widgets/smart_widgets/bottom_navy_bar_widget.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import './post_activity_view_model.dart';
-import '../../../app/theme/AppColors.dart';
 
 class PostActivityView extends StatefulWidget {
   const PostActivityView({Key? key}) : super(key: key);
@@ -21,43 +22,10 @@ class _PostActivityViewState extends State<PostActivityView> {
     return ViewModelBuilder<PostActivityViewModel>.reactive(
       viewModelBuilder: () => PostActivityViewModel(context),
       onModelReady: (PostActivityViewModel model) async => await model.init(),
-      builder: (BuildContext context, PostActivityViewModel model, Widget? child) {
+      builder:
+          (BuildContext context, PostActivityViewModel model, Widget? child) {
         return Scaffold(
-          bottomNavigationBar: BottomNavyBar(
-            selectedIndex: _currentIndex,
-            showElevation: true,
-            itemCornerRadius: 24,
-            curve: Curves.easeIn,
-            onItemSelected: (index) => setState(() => _currentIndex = index),
-            items: <BottomNavyBarItem>[
-              BottomNavyBarItem(
-                icon: const Icon(Icons.home),
-                title: const Text('Home'),
-                activeColor: AppColors.maroni,
-                textAlign: TextAlign.center,
-              ),
-              BottomNavyBarItem(
-                icon: const Icon(Icons.post_add),
-                title: const Text('Create Post'),
-                activeColor: AppColors.maroni,
-                textAlign: TextAlign.center,
-              ),
-              BottomNavyBarItem(
-                icon: const Icon(Icons.notifications_on),
-                title: const Text(
-                  'Activity',
-                ),
-                activeColor: AppColors.maroni,
-                textAlign: TextAlign.center,
-              ),
-              BottomNavyBarItem(
-                icon: const Icon(Icons.person),
-                title: const Text('Profile'),
-                activeColor: AppColors.maroni,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+          bottomNavigationBar: BottomNavyBarWidget(currentIndex: model.currentIndex),
           body: SafeArea(
             child: Column(
               children: [

@@ -15,13 +15,16 @@ import './lost_pet_view_model.dart';
 
 class LostPetView extends StatelessWidget {
   const LostPetView({
+    required this.post,
     Key? key,
   }) : super(key: key);
+
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LostPetViewModel>.reactive(
-      viewModelBuilder: () => LostPetViewModel(context),
+      viewModelBuilder: () => LostPetViewModel(context, post),
       onModelReady: (LostPetViewModel model) async => await model.init(),
       builder: (BuildContext context, LostPetViewModel model, Widget? child) {
         return Scaffold(

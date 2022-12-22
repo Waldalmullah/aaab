@@ -25,14 +25,14 @@ class SingUpView extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SingUpImage(model: model),
+                      SingUpImage(model: model, userImage: model.userImage),
                       SingUpTextFieldWidget (title: 'Username', model: model, controller: model.userNameController),
                       SingUpTextFieldWidget (title: 'E-mail', model: model, controller: model.emailController),
                       SingUpTextFieldWidget (title: 'Governance', model: model, controller: model.governanceController),
                       SingUpTextFieldWidget (title: 'Birth day', model: model, controller: model.birthDayController),
-                      SingUpTextFieldWidget (title: 'Password', model: model, controller: model.passwordController),
-                      SingUpTextFieldWidget (title: 'Password confirmation', model: model, controller: model.confirmPasswordController),
-                      const SingUpButtonWidget(),
+                      SingUpTextFieldWidget (title: 'Password', model: model, controller: model.passwordController, obscureText: true,),
+                      SingUpTextFieldWidget (title: 'Password confirmation', model: model, controller: model.confirmPasswordController, obscureText: true),
+                      SingUpButtonWidget(onTap: () => model.doSignUp(), isLoading: model.isLoading,),
                     ],
                   ),
                 ),

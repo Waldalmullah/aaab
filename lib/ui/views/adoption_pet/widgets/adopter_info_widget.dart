@@ -1,6 +1,6 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../app/theme/AppColors.dart';
 
 class AdopterInfoWidget extends StatelessWidget {
   const AdopterInfoWidget({Key? key, required this.name, required this.phoneNumber, required this.numberOfPets, required this.aboutMe, required this.adoptReason}) : super(key: key);

@@ -1,7 +1,7 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../app/theme/AppColors.dart';
 import './shelter_details_view_model.dart';
 
 class ShelterDetailsView extends StatelessWidget {

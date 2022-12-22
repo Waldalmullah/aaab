@@ -1,3 +1,4 @@
+import 'package:aaab/app/models/Post.dart';
 import 'package:aaab/app/utils/constants.dart';
 import 'package:aaab/ui/views/found_it/widgets/found_it_button.dart';
 import 'package:aaab/ui/views/found_it/widgets/found_it_description.dart';
@@ -9,7 +10,12 @@ import 'package:stacked/stacked.dart';
 import './found_it_view_model.dart';
 
 class FoundItView extends StatelessWidget {
-  const FoundItView({Key? key}) : super(key: key);
+  const FoundItView({
+    required this.post,
+    Key? key,
+  }) : super(key: key);
+
+  final Post post;
 
   @override
   Widget build(BuildContext context) {

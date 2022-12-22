@@ -1,8 +1,8 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../app/theme/AppColors.dart';
 import './chat_bot_view_model.dart';
 
 class ChatBotView extends StatelessWidget {

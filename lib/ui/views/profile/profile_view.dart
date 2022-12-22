@@ -1,6 +1,7 @@
 import 'package:aaab/ui/views/profile/widgets/profile_header.dart';
 import 'package:aaab/ui/views/profile/widgets/profile_item_card.dart';
 import 'package:aaab/ui/views/profile/widgets/profile_top_card.dart';
+import 'package:aaab/ui/widgets/smart_widgets/bottom_navy_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,6 +17,7 @@ class ProfileView extends StatelessWidget {
       onModelReady: (ProfileViewModel model) async => await model.init(),
       builder: (BuildContext context, ProfileViewModel model, Widget? child) {
         return Scaffold(
+          bottomNavigationBar: BottomNavyBarWidget(currentIndex: model.currentIndex),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -83,16 +85,14 @@ class ProfileView extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15.0))),
                             elevation: 0,
-                            child: Text(
+                            child: const Text(
                               'Logout',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16),
                             ),
-                            onPressed: () {
-                              //TODO Logout
-                            },
+                            onPressed: () => model.logOut(),
                           ),
                         )
                       ],

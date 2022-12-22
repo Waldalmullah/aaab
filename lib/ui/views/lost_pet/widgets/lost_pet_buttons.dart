@@ -17,36 +17,43 @@ class LostPetButtons extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              decoration: BoxDecoration(
-                  color: AppColors().primary,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Text(
-                model.post.status == PostStatus.ABANDONED
-                    ? 'Want It!'
-                    : 'Found It!',
-                style: TextStyle(
-                    color: AppColors().textColor, fontWeight: FontWeight.bold),
+            InkWell(
+              onTap: () {
+                if (model.post.status == PostStatus.ABANDONED) {
+                  model.pushFoundIt();
+                } else {
+                  model.pushWantIt();
+                }
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Text(
+                  model.post.status == PostStatus.ABANDONED
+                      ? 'Want It!'
+                      : 'Found It!',
+                  style: const TextStyle(
+                      color: AppColors.textColor, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             const Spacer(),
-            Container(
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () => model.toggleLike(),
-                      icon: Icon(model.hasliked == true
-                          ? Icons.favorite_border
-                          : Icons.favorite)),
-                  Text(
-                    '${model.numberOfLikes} People Support you',
-                    style: TextStyle(
-                        color: AppColors().textColor,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () => model.toggleLike(),
+                    icon: Icon(model.hasliked != true
+                        ? Icons.favorite_border
+                        : Icons.favorite)),
+                Text(
+                  '${model.post.likes} People Support you',
+                  style: const TextStyle(
+                      color: AppColors.textColor, fontWeight: FontWeight.bold),
+                ),
+              ],
             )
           ],
         ),

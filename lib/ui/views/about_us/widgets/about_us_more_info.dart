@@ -11,8 +11,8 @@ class AboutUsMoreInformationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
+          const Padding(
+            padding: EdgeInsets.all(15.0),
             child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text('For More information:')),
@@ -24,11 +24,11 @@ class AboutUsMoreInformationWidget extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(color: AppColors().primary),
+                  decoration: const BoxDecoration(color: AppColors.primary),
                   child: const Icon(Icons.phone),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20),
                   child: Text('+973 37707221 - Yasser'),
                 )
               ],
@@ -41,11 +41,11 @@ class AboutUsMoreInformationWidget extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(color: AppColors().primary),
+                  decoration: const BoxDecoration(color: AppColors.primary),
                   child: const Icon(Icons.camera),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20),
                   child: Text('AAABPetRecue'),
                 )
               ],
@@ -58,11 +58,11 @@ class AboutUsMoreInformationWidget extends StatelessWidget {
                 Container(
                   width: 40,
                   height: 40,
-                  decoration: BoxDecoration(color: AppColors().primary),
+                  decoration: const BoxDecoration(color: AppColors.primary),
                   child: const Icon(Icons.email),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20),
                   child: Text('Petaaab@gmail.com'),
                 )
               ],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aaab/ui/views/found_it/found_it_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -47,16 +49,25 @@ class FoundItImageWidget extends StatelessWidget {
                   offset: const Offset(5, 5),
                 )
               ]),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.photo, size: 50),
-              Padding(
-                padding: EdgeInsets.only(top: 12),
-                child: Text('Add Photo'),
-              )
-            ],
-          ),
+          child: model.image != null
+              ? Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(.6),
+                  image: DecorationImage(
+                    image: FileImage(File(model.image!.path)),
+                    fit: BoxFit.cover,
+                  )),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.photo, size: 50),
+                    Padding(
+                      padding: EdgeInsets.only(top: 12),
+                      child: Text('Add Photo'),
+                    )
+                  ],
+                ),
         ),
       );
 }

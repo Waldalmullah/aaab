@@ -1,6 +1,6 @@
+import 'package:aaab/app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/AppColors.dart';
 
 class ActivityDashboardWidget extends StatelessWidget {
   const ActivityDashboardWidget(

@@ -13,13 +13,9 @@ class PostActivityHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: IconButton(onPressed: () => model.goBack(), icon: const Icon(Icons.arrow_back)),
-          ),
-          Center(
+          const Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
+              padding: EdgeInsets.symmetric(vertical: 30),
               child: Text('Posts Activity'),
             ),
           ),
