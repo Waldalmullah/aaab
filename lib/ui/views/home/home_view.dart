@@ -70,35 +70,43 @@ class _HomeViewState extends State<HomeView> {
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
-            child: model.posts!.isEmpty
+            child: model.isLoading
                 ? const Padding(
                     padding: EdgeInsets.only(top: 100),
                     child: Center(
-                      child: Text('No posts yet'),
+                      child: CircularProgressIndicator(
+                        color: AppColors.primary,
+                      ),
                     ),
                   )
-                : ListView.separated(
-                    itemCount: model.posts?.length ?? 0,
-                    shrinkWrap: true,
-                    physics: const ScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      Post _post = model.posts?[index] ?? Post();
-                      print(_post);
-                      return ActivityDashboardWidget(
-                        name: _post.petName ?? '-',
-                        description: _post.description ?? '-',
-                        img: _post.photo ??
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
-                        onTap: () => {
-                          if (_post.status == PostStatus.LOST)
-                            {model.pushLostIt(_post)}
+                : model.posts!.isEmpty
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: Center(
+                          child: Text('No posts yet'),
+                        ),
+                      )
+                    : ListView.separated(
+                        itemCount: model.posts?.length ?? 0,
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          Post _post = model.posts?[index] ?? Post();
+                          return ActivityDashboardWidget(
+                            name: _post.petName ?? '-',
+                            description: _post.description ?? '-',
+                            img: _post.photo ??
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
+                            onTap: () => {
+                              if (_post.status == PostStatus.LOST)
+                                {model.pushLostIt(_post)}
+                            },
+                          );
                         },
-                      );
-                    },
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 16,
-                    ),
-                  ),
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 16,
+                        ),
+                      ),
           ),
         ),
       ],
