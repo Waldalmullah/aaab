@@ -57,6 +57,16 @@ class ChatBotView extends StatelessWidget {
                   color: AppColors.maroni,
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Tap the button bellow to genrate a new fact about animals',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 200,
                 child: ListView(

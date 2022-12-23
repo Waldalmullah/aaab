@@ -37,10 +37,15 @@ class ShelterDetailsView extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: 100,
-                        height: 100,
+                        width: 400,
+                        height: 300,
                         color: Colors.white,
-                        child: Image.network(model.shelter.image!),
+                        child: Container(
+                          child: Image.network(
+                            model.shelter.image!,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -80,7 +85,7 @@ class ShelterDetailsView extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.only(left: 30),
                         child: SizedBox(
                           width: 350,
                           child: Image.network(
@@ -140,7 +145,7 @@ class ShelterDetailsView extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 20, bottom: 16),
                     child: InkWell(
                       onTap: () async => model.sendEmail(),
                       child: Container(
