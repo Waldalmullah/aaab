@@ -13,15 +13,18 @@ class Post {
   final String? description;
   final int? likes;
   final DocumentReference? user;
+  final Timestamp? date;
 
-  Post(
-      {this.title,
-      this.photo,
-      this.petName,
-      this.status,
-      this.description,
-      this.likes,
-      this.user});
+  Post({
+    this.title,
+    this.photo,
+    this.petName,
+    this.status,
+    this.description,
+    this.likes,
+    this.user,
+    this.date,
+  });
 
   Post copyWith({
     String? title,
@@ -30,6 +33,7 @@ class Post {
     PostStatus? status,
     String? description,
     int? likes,
+    Timestamp? date,
     DocumentReference? user,
   }) =>
       Post(
@@ -40,6 +44,7 @@ class Post {
         description: description ?? this.description,
         likes: likes ?? this.likes,
         user: user ?? this.user,
+        date: date ?? this.date,
       );
 
   Map<String, dynamic> toMap() => {
@@ -50,6 +55,7 @@ class Post {
         'description': description,
         'likes': likes,
         'user': user,
+        'date': date,
       };
 
   String toJson() => json.encode(toMap());
@@ -61,6 +67,7 @@ class Post {
       title: map['title'],
       photo: map['photo'],
       likes: map['likes'],
+      date: map['date'],
       petName: map['petName'],
       status: PostStatus.values
           .firstWhere((e) => describeEnum(e) == map['status'].toUpperCase()),
@@ -72,7 +79,7 @@ class Post {
 
   @override
   String toString() =>
-      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, user: $user, likes: $likes)';
+      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, user: $user, likes: $likes, date:$date )';
 
   @override
   bool operator ==(Object other) {
@@ -83,6 +90,7 @@ class Post {
         other.petName == petName &&
         other.status == status &&
         other.likes == likes &&
+        other.date == date &&
         other.user == user &&
         other.description == description;
   }

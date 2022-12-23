@@ -15,6 +15,10 @@ class HomeViewModel extends BaseViewModel {
     _user = await _userService.getUser(uuid);
     _posts = await _postService.getPosts();
     _myPosts = await _postService.getMyPosts();
+
+    if(_posts!=null){
+      _posts!.sort((Post? a, Post? b) => b!.date!.compareTo(a!.date!));
+    }
     toggleIsLoading();
   }
 

@@ -58,14 +58,19 @@ class CreatePostView extends StatelessWidget {
           ),
           width: double.infinity,
           child: Center(
-            child: Text(
-              'Create Post',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: model.isValid ? AppColors.maroni : Colors.grey.shade600,
-              ),
-            ),
+            child: model.isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(color: AppColors.textColor))
+                : Text(
+                    'Create Post',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: model.isValid
+                          ? AppColors.maroni
+                          : Colors.grey.shade600,
+                    ),
+                  ),
           ),
         ),
       ),

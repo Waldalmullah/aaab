@@ -9,9 +9,10 @@ import 'package:aaab/app/services/AnimalsShelterService.dart' as _i3;
 import 'package:aaab/app/services/AuthService.dart' as _i4;
 import 'package:aaab/app/services/CloudStorageService.dart' as _i5;
 import 'package:aaab/app/services/FireStoreService.dart' as _i6;
-import 'package:aaab/app/services/PostService.dart' as _i7;
-import 'package:aaab/app/services/router_service.dart' as _i8;
-import 'package:aaab/app/services/UserService.dart' as _i9;
+import 'package:aaab/app/services/PostActivityService.dart' as _i7;
+import 'package:aaab/app/services/PostService.dart' as _i8;
+import 'package:aaab/app/services/router_service.dart' as _i9;
+import 'package:aaab/app/services/UserService.dart' as _i10;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -33,9 +34,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i4.AuthService>(() => _i4.AuthService());
     gh.lazySingleton<_i5.CloudStorageService>(() => _i5.CloudStorageService());
     gh.lazySingleton<_i6.FireStoreService>(() => _i6.FireStoreService());
-    gh.lazySingleton<_i7.PostService>(() => _i7.PostService());
-    gh.lazySingleton<_i8.RouterService>(() => _i8.RouterService());
-    gh.lazySingleton<_i9.UserService>(() => _i9.UserService());
+    gh.lazySingleton<_i7.PostActivityService>(() => _i7.PostActivityService());
+    gh.lazySingleton<_i8.PostService>(() => _i8.PostService());
+    gh.lazySingleton<_i9.RouterService>(() => _i9.RouterService());
+    gh.lazySingleton<_i10.UserService>(() => _i10.UserService());
     return this;
   }
 }

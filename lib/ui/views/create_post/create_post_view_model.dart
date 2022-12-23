@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
@@ -61,8 +62,6 @@ class CreatePostViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  onPicClick() {}
-
   void openGallery() async {
     _image = await _picker.pickImage(source: ImageSource.gallery);
     notifyListeners();
@@ -77,9 +76,8 @@ class CreatePostViewModel extends BaseViewModel {
     if (_image != null) {
       const Uuid uuid = Uuid();
       String path = 'posts/$userId/${uuid.v1()}';
-      return await _cloudStorageService.uploadAnImage(
-          File(_image!.path), userId,
-          path: path);
+      return await _cloudStorageService
+          .uploadAnImage(File(_image!.path), userId, path: path);
     }
     return null;
   }
@@ -100,6 +98,7 @@ class CreatePostViewModel extends BaseViewModel {
     } else if (_selectedStatus == null || _selectedStatus?.trim() == '') {
       showSnackBar("status required");
     } else {
+      toggleIsLoading();
       String uuid = await _authService.userId() ?? '';
       String link = await uploadFile(uuid) ?? '';
       Post _post = Post(
@@ -111,11 +110,20 @@ class CreatePostViewModel extends BaseViewModel {
         likes: 0,
         photo: link,
         description: description.text.trim(),
+        date: Timestamp.now(),
       );
 
       showSnackBar(await _postService.createPost(_post));
-      replaceNamed(const HomeRoute().path);
+      toggleIsLoading();
+      Timer(const Duration(seconds: 3), () {
+        replaceNamed(const HomeRoute().path);
+      });
     }
+  }
+
+  void toggleIsLoading() {
+    _isLoading = !_isLoading;
+    notifyListeners();
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -123,4 +131,7 @@ class CreatePostViewModel extends BaseViewModel {
 
   XFile? _image;
   XFile? get image => _image;
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
 }

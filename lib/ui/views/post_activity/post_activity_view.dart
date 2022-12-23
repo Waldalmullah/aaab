@@ -25,7 +25,8 @@ class _PostActivityViewState extends State<PostActivityView> {
       builder:
           (BuildContext context, PostActivityViewModel model, Widget? child) {
         return Scaffold(
-          bottomNavigationBar: BottomNavyBarWidget(currentIndex: model.currentIndex),
+          bottomNavigationBar:
+              BottomNavyBarWidget(currentIndex: model.currentIndex),
           body: SafeArea(
             child: Column(
               children: [
@@ -34,10 +35,18 @@ class _PostActivityViewState extends State<PostActivityView> {
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      PostActivityCard(),
+                      const SizedBox(height: 10),
+                      model.isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                  color: AppColors.primary),
+                            )
+                          : Column(
+                              children: List.generate(
+                                  model.activities.length,
+                                  (int index) => PostActivityCard( model: model,
+                                      activity: model.activities[index])),
+                            )
                     ],
                   ),
                 ),
