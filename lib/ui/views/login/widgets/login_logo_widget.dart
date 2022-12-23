@@ -12,7 +12,11 @@ class LoginLogoWidget extends StatelessWidget {
           Image.asset('assets/png/cat.png'),
           const Padding(
             padding: EdgeInsets.only(top: 100),
-            child: Text("Login", textAlign: TextAlign.center),
+            child: Text(
+              "Login",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

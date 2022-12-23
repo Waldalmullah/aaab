@@ -55,10 +55,10 @@ class ProfileTopCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            model.user?.email ?? '-',
+                            model.user?.name ?? '-',
                             style: const TextStyle(
                               color: AppColors.maroni,
-                              fontSize: 16,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

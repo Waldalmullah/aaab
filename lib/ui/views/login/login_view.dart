@@ -27,8 +27,14 @@ class LoginView extends StatelessWidget {
                 children: [
                   const PowWidget(),
                   const LoginLogoWidget(),
-                  LoginTextFieldWidget(labelText: 'Username', controller: model.emailController,),
-                  LoginTextFieldWidget(labelText: 'Password', controller: model.passwordController, obscureText: true),
+                  LoginTextFieldWidget(
+                    labelText: 'Username',
+                    controller: model.emailController,
+                  ),
+                  LoginTextFieldWidget(
+                      labelText: 'Password',
+                      controller: model.passwordController,
+                      obscureText: true),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
