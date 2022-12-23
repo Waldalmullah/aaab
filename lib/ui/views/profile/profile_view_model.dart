@@ -15,8 +15,10 @@ class ProfileViewModel extends BaseViewModel {
 
     if (uuid != null) {
       _user = await _userService.getUser(uuid);
-      print(_user);
     }
+
+    toggleIsLoading();
+    notifyListeners();
   }
 
   final AuthService _authService = locator<AuthService>();
@@ -46,5 +48,6 @@ class ProfileViewModel extends BaseViewModel {
   late User? _user;
   User? get user => _user;
 
-  bool _isLoading = false;
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
 }

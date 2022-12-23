@@ -28,7 +28,7 @@ class ProfileView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
                       children: [
-                        const ProfileTopCard(),
+                        ProfileTopCard(model),
                         const SizedBox(height: 15),
                         ProfileItemCard(
                           title: 'Shelter',
