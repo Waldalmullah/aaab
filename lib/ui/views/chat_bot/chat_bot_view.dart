@@ -15,6 +15,11 @@ class ChatBotView extends StatelessWidget {
       onModelReady: (ChatBotViewModel model) async => await model.init(),
       builder: (BuildContext context, ChatBotViewModel model, Widget? child) {
         return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => model.getFact(),
+            backgroundColor: AppColors.primary,
+            child: const Text('fact'),
+          ),
           appBar: AppBar(
             leading: Stack(children: [
               Padding(
@@ -35,14 +40,12 @@ class ChatBotView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Center(
-                  child: Container(
-                    child: Text(
-                      'Today, ${DateFormat("Hm").format(DateTime.now())}',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.maroni),
-                    ),
+                  child: Text(
+                    'Today, ${DateFormat("Hm").format(DateTime.now())}',
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.maroni),
                   ),
                 ),
               ),
@@ -54,23 +57,30 @@ class ChatBotView extends StatelessWidget {
                   color: AppColors.maroni,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide.none),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide.none),
-                      filled: true,
-                      fillColor: const Color(0xff808080).withOpacity(.12),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide.none)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height - 200,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: List.generate(
+                    model.facts.length,
+                    (int index) => ListTile(
+                      title: Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.primary.withOpacity(.6),
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(model.facts[index]),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         );
