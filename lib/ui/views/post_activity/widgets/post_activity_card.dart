@@ -27,9 +27,11 @@ class PostActivityCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (true) {
-            //TODO
-          // if (activity.post?.status == PostStatus.ABANDONED) {
-            // model.pushNamed(const AdoptionPetRoute().path);
+            if (activity.post?.status == PostStatus.ABANDONED) {
+              model.push(AdoptionPetRoute(activity: activity));
+            } else if (activity.post?.status == PostStatus.LOST) {
+              model.push(FindingPetRoute(activity: activity, model: model));
+            }
           }
         },
         child: Material(
@@ -64,7 +66,8 @@ class PostActivityCard extends StatelessWidget {
                             width: 60,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: NetworkImage(activity.post?.photo ?? ''),
+                                  image:
+                                      NetworkImage(activity.post?.photo ?? ''),
                                   fit: BoxFit.fill),
                               shape: BoxShape.circle,
                             ),

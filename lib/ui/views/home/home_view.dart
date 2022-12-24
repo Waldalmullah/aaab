@@ -6,9 +6,7 @@ import 'package:aaab/ui/widgets/dumb_widgets/activity_dashboard_widget.dart';
 import 'package:aaab/ui/widgets/dumb_widgets/pet_dashboard_widget.dart';
 import 'package:aaab/ui/widgets/smart_widgets/bottom_navy_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import './home_view_model.dart';
 
@@ -102,6 +100,8 @@ class _HomeViewState extends State<HomeView> {
                             onTap: () => {
                               if (_post.status == PostStatus.LOST)
                                 {model.pushLostIt(_post)}
+                              else if (_post.status == PostStatus.ABANDONED)
+                                {model.pushWantIt(_post)}
                             },
                           );
                         },
@@ -191,10 +191,10 @@ class _HomeViewState extends State<HomeView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SafeArea(
+                    const SafeArea(
                       child: Text(
-                        'Today, ${DateFormat("Hm").format(DateTime.now())}',
-                        style: const TextStyle(
+                        'Good morning',
+                        style: TextStyle(
                           color: AppColors.maroni,
                         ),
                       ),

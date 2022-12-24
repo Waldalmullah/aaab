@@ -12,7 +12,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:aaab/app/models/Post.dart' as _i20;
-import 'package:aaab/app/models/PostActivity.dart' as _i22;
+import 'package:aaab/app/models/PostActivity.dart' as _i21;
 import 'package:aaab/app/models/Shelter.dart' as _i23;
 import 'package:aaab/ui/views/about_us/about_us_view.dart' as _i8;
 import 'package:aaab/ui/views/adoption_pet/adoption_pet_view.dart' as _i12;
@@ -27,7 +27,7 @@ import 'package:aaab/ui/views/notification_activity/notification_activity_view.d
     as _i17;
 import 'package:aaab/ui/views/post_activity/post_activity_view.dart' as _i10;
 import 'package:aaab/ui/views/post_activity/post_activity_view_model.dart'
-    as _i21;
+    as _i22;
 import 'package:aaab/ui/views/profile/profile_view.dart' as _i11;
 import 'package:aaab/ui/views/shelter/shelter_view.dart' as _i15;
 import 'package:aaab/ui/views/shelter_details/shelter_details_view.dart'
@@ -139,16 +139,20 @@ class AppRouter extends _i18.RootStackRouter {
         routeData: routeData,
         child: _i12.AdoptionPetView(
           key: args.key,
-          model: args.model,
           activity: args.activity,
         ),
         opaque: true,
       );
     },
     FindingPetRoute.name: (routeData) {
+      final args = routeData.argsAs<FindingPetRouteArgs>();
       return _i18.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i13.FindingPetView(),
+        child: _i13.FindingPetView(
+          key: args.key,
+          model: args.model,
+          activity: args.activity,
+        ),
         opaque: true,
       );
     },
@@ -466,14 +470,12 @@ class ProfileRoute extends _i18.PageRouteInfo<void> {
 class AdoptionPetRoute extends _i18.PageRouteInfo<AdoptionPetRouteArgs> {
   AdoptionPetRoute({
     _i19.Key? key,
-    required _i21.PostActivityViewModel model,
-    required _i22.PostActivity activity,
+    required _i21.PostActivity activity,
   }) : super(
           AdoptionPetRoute.name,
           path: '/adoption-pet-view',
           args: AdoptionPetRouteArgs(
             key: key,
-            model: model,
             activity: activity,
           ),
         );
@@ -484,32 +486,56 @@ class AdoptionPetRoute extends _i18.PageRouteInfo<AdoptionPetRouteArgs> {
 class AdoptionPetRouteArgs {
   const AdoptionPetRouteArgs({
     this.key,
+    required this.activity,
+  });
+
+  final _i19.Key? key;
+
+  final _i21.PostActivity activity;
+
+  @override
+  String toString() {
+    return 'AdoptionPetRouteArgs{key: $key, activity: $activity}';
+  }
+}
+
+/// generated route for
+/// [_i13.FindingPetView]
+class FindingPetRoute extends _i18.PageRouteInfo<FindingPetRouteArgs> {
+  FindingPetRoute({
+    _i19.Key? key,
+    required _i22.PostActivityViewModel model,
+    required _i21.PostActivity activity,
+  }) : super(
+          FindingPetRoute.name,
+          path: '/finding-pet-view',
+          args: FindingPetRouteArgs(
+            key: key,
+            model: model,
+            activity: activity,
+          ),
+        );
+
+  static const String name = 'FindingPetRoute';
+}
+
+class FindingPetRouteArgs {
+  const FindingPetRouteArgs({
+    this.key,
     required this.model,
     required this.activity,
   });
 
   final _i19.Key? key;
 
-  final _i21.PostActivityViewModel model;
+  final _i22.PostActivityViewModel model;
 
-  final _i22.PostActivity activity;
+  final _i21.PostActivity activity;
 
   @override
   String toString() {
-    return 'AdoptionPetRouteArgs{key: $key, model: $model, activity: $activity}';
+    return 'FindingPetRouteArgs{key: $key, model: $model, activity: $activity}';
   }
-}
-
-/// generated route for
-/// [_i13.FindingPetView]
-class FindingPetRoute extends _i18.PageRouteInfo<void> {
-  const FindingPetRoute()
-      : super(
-          FindingPetRoute.name,
-          path: '/finding-pet-view',
-        );
-
-  static const String name = 'FindingPetRoute';
 }
 
 /// generated route for

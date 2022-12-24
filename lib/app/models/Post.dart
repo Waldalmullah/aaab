@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class Post {
+  final String? id;
   final String? title;
   final String? photo;
   final String? petName;
@@ -24,6 +25,7 @@ class Post {
     this.likes,
     this.user,
     this.date,
+    this.id,
   });
 
   Post copyWith({
@@ -35,6 +37,7 @@ class Post {
     int? likes,
     Timestamp? date,
     DocumentReference? user,
+    String? id,
   }) =>
       Post(
         title: title ?? this.title,
@@ -45,6 +48,7 @@ class Post {
         likes: likes ?? this.likes,
         user: user ?? this.user,
         date: date ?? this.date,
+        id: id ?? this.id,
       );
 
   Map<String, dynamic> toMap() => {
@@ -56,6 +60,7 @@ class Post {
         'likes': likes,
         'user': user,
         'date': date,
+        'id': id,
       };
 
   String toJson() => json.encode(toMap());
@@ -64,6 +69,7 @@ class Post {
     if (map.isEmpty) return Post();
 
     return Post(
+      id: map['id'],
       title: map['title'],
       photo: map['photo'],
       likes: map['likes'],
@@ -79,7 +85,7 @@ class Post {
 
   @override
   String toString() =>
-      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, user: $user, likes: $likes, date:$date )';
+      'Post(title: $title, photo: $photo, petName: $petName, status: $status, description: $description, user: $user, likes: $likes, date:$date)';
 
   @override
   bool operator ==(Object other) {
@@ -91,6 +97,7 @@ class Post {
         other.status == status &&
         other.likes == likes &&
         other.date == date &&
+        other.id == id &&
         other.user == user &&
         other.description == description;
   }

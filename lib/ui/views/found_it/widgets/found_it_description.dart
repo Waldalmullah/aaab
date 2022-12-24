@@ -1,7 +1,13 @@
+import 'package:aaab/ui/views/found_it/found_it_view_model.dart';
 import 'package:flutter/material.dart';
 
 class FoundItDescriptionWidget extends StatelessWidget {
-  const FoundItDescriptionWidget({Key? key}) : super(key: key);
+  const FoundItDescriptionWidget(
+    this.model, {
+    Key? key,
+  }) : super(key: key);
+
+  final FoundItViewModel model;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -29,12 +35,16 @@ class FoundItDescriptionWidget extends StatelessWidget {
                       offset: const Offset(5, 5),
                     )
                   ]),
-              child: const TextField(
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.newline,
-                minLines: 8,
-                maxLines: 10,
-                decoration: InputDecoration(border: InputBorder.none),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: model.description,
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
+                  minLines: 8,
+                  maxLines: 10,
+                  decoration: const InputDecoration(border: InputBorder.none),
+                ),
               ),
             ),
           ),

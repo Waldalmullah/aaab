@@ -10,17 +10,15 @@ import './adoption_pet_view_model.dart';
 class AdoptionPetView extends StatelessWidget {
   const AdoptionPetView({
     Key? key,
-    required this.model,
     required this.activity,
   }) : super(key: key);
 
   final PostActivity activity;
-  final PostActivityViewModel model;
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AdoptionPetViewModel>.reactive(
-      viewModelBuilder: () => AdoptionPetViewModel(context),
+      viewModelBuilder: () => AdoptionPetViewModel(context, activity),
       onModelReady: (AdoptionPetViewModel model) async => await model.init(),
       builder:
           (BuildContext context, AdoptionPetViewModel model, Widget? child) {
@@ -35,10 +33,8 @@ class AdoptionPetView extends StatelessWidget {
               style: TextStyle(color: AppColors.maroni),
             ),
             leading: IconButton(
-                onPressed: () {
-                  model.goBack();
-                },
-                icon: Icon(
+                onPressed: () => model.goBack(),
+                icon: const Icon(
                   Icons.arrow_back_ios_new,
                   color: AppColors.maroni,
                 )),
@@ -59,7 +55,7 @@ class AdoptionPetView extends StatelessWidget {
                             Container(
                               height: 100,
                               width: 100,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.grey,
                                 // image: DecorationImage(image: NetworkImage(''), fit: BoxFit.fill),
@@ -68,16 +64,16 @@ class AdoptionPetView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 15.0),
                               child: Text(
-                                'User_name',
-                                style: TextStyle(
+                                model.activity.user?.name ?? '-',
+                                style: const TextStyle(
                                     color: AppColors.maroni,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
+                        const Padding(
+                          padding: EdgeInsets.only(
                               left: 30.0, bottom: 25, right: 30),
                           child: Icon(
                             Icons.compare_arrows_rounded,
@@ -90,7 +86,7 @@ class AdoptionPetView extends StatelessWidget {
                             Container(
                               height: 100,
                               width: 100,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.grey,
                                 // image: DecorationImage(image: NetworkImage(''), fit: BoxFit.fill),
@@ -99,8 +95,8 @@ class AdoptionPetView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 15.0),
                               child: Text(
-                                'Pet_name',
-                                style: TextStyle(
+                                model.activity.post?.petName ?? '-',
+                                style: const TextStyle(
                                     color: AppColors.maroni,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -119,7 +115,7 @@ class AdoptionPetView extends StatelessWidget {
                       color: AppColors.maroni,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Adopter Information',
                     style: TextStyle(
                         color: AppColors.maroni,
@@ -129,62 +125,57 @@ class AdoptionPetView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: AdopterInfoWidget(
-                        name: 'Mudafar',
-                        phoneNumber: '33003867',
-                        numberOfPets: '1',
-                        aboutMe:
-                            'i am mudafar blah blah blah blah blah blah blah blah blah blah',
-                        adoptReason:
-                            'because blah blah blah blah blah blah blah blah blah blah'),
+                      name: model.activity.from_user?.name ?? '-',
+                      phoneNumber: model.activity.from_user?.governance ?? '-',
+                      numberOfPets: '1',
+                      aboutMe: model.activity.post?.description ?? '',
+                      adoptReason: model.activity.post?.description ?? '',
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 60.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // SizedBox(
-                        //   height: 50,
-                        //   width: 130,
-                        //   child: FloatingActionButton(
-                        //     backgroundColor: AppColors.yellow,
-                        //     shape: const RoundedRectangleBorder(
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(15.0))),
-                        //     elevation: 2,
-                        //     child: Text(
-                        //       'Accept',
-                        //       style: const TextStyle(
-                        //           color: AppColors.maroni,
-                        //           fontWeight: FontWeight.bold,
-                        //           fontSize: 16),
-                        //     ),
-                        //     onPressed: () {
-                        //       //TODO Logout
-                        //     },
-                        //   ),
-                        // ),
-                        // SizedBox(width: 30),
-                        // SizedBox(
-                        //   height: 50,
-                        //   width: 130,
-                        //   child: FloatingActionButton(
-                        //     backgroundColor: Colors.red[300],
-                        //     shape: RoundedRectangleBorder(
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(15.0))),
-                        //     elevation: 2,
-                        //     child: Text(
-                        //       'Decline',
-                        //       style: TextStyle(
-                        //           color: Colors.white,
-                        //           fontWeight: FontWeight.bold,
-                        //           fontSize: 16),
-                        //     ),
-                        //     onPressed: () {
-                        //       //TODO Logout
-                        //     },
-                        //   ),
-                        // ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              height: 50,
+                              width: 130,
+                              decoration: const BoxDecoration(
+                                  color: AppColors.yellow,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15.0))),
+                              child: const Center(
+                                child: Text('Accept',
+                                    style: TextStyle(
+                                        color: AppColors.maroni,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16)),
+                              )),
+                        ),
+                        const SizedBox(width: 30),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              height: 50,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: Colors.red[300],
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15.0),
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  'Decline',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                              )),
+                        ),
                       ],
                     ),
                   ),

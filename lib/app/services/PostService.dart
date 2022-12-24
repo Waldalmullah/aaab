@@ -2,6 +2,8 @@ import 'package:aaab/app/locator/locator.dart';
 import 'package:aaab/app/models/User.dart';
 import 'package:aaab/app/services/AuthService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import '../models/Post.dart';
 
@@ -23,7 +25,10 @@ class PostService {
 
     await _collection.get().then((QuerySnapshot<Map<String, dynamic>> values) {
       for (QueryDocumentSnapshot<Map<String, dynamic>> doc in values.docs) {
-        _posts.add(Post.fromMap(doc.data()));
+        Map<String, dynamic> _data = {};
+        _data.addAll(doc.data());
+        _data.addAll({'id': doc.id});
+        _posts.add(Post.fromMap(_data));
       }
     });
 
@@ -47,4 +52,7 @@ class PostService {
 
     return _posts;
   }
+
+
+ 
 }

@@ -20,9 +20,9 @@ class LostPetButtons extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (model.post.status == PostStatus.ABANDONED) {
-                  model.pushFoundIt();
-                } else {
                   model.pushWantIt();
+                } else if (model.post.status == PostStatus.LOST) {
+                  model.pushFoundIt();
                 }
               },
               child: Container(

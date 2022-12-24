@@ -30,6 +30,5 @@ class LostPetViewModel extends BaseViewModel {
 
 
   void pushFoundIt() => push(FoundItRoute(post: _post));
-  void pushWantIt() => push(FoundItRoute(post: _post));
-
+  void pushWantIt() => push(WantItRoute(post: _post));
 }

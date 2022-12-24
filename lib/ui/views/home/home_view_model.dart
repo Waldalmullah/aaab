@@ -45,6 +45,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void pushLostIt(Post post) => push(LostPetRoute(post: post));
+  void pushWantIt(Post post) => push(LostPetRoute(post: post));
 
   bool _isLoading = true;
   bool get isLoading => _isLoading;

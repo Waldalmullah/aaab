@@ -1,8 +1,13 @@
+import 'package:aaab/ui/views/want_it/want_it_view_model.dart';
 import 'package:flutter/material.dart';
 
 class WantItAboutMeWidget extends StatelessWidget {
-  const WantItAboutMeWidget({Key? key}) : super(key: key);
+  const WantItAboutMeWidget(
+    this.model, {
+    Key? key,
+  }) : super(key: key);
 
+  final WantItViewModel model;
   @override
   Widget build(BuildContext context) => Column(
         children: [
@@ -30,12 +35,16 @@ class WantItAboutMeWidget extends StatelessWidget {
                   )
                 ],
               ),
-              child: const TextField(
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.newline,
-                minLines: 8,
-                maxLines: 10,
-                decoration: InputDecoration(border: InputBorder.none),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  controller: model.aboutMeTextEditingController,
+                  keyboardType: TextInputType.multiline,
+                  textInputAction: TextInputAction.newline,
+                  minLines: 8,
+                  maxLines: 10,
+                  decoration: const InputDecoration(border: InputBorder.none),
+                ),
               ),
             ),
           ),

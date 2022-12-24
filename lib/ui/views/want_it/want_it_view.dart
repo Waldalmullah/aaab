@@ -19,7 +19,7 @@ class WantItView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<WantItViewModel>.reactive(
-      viewModelBuilder: () => WantItViewModel(context),
+      viewModelBuilder: () => WantItViewModel(context, post),
       onModelReady: (WantItViewModel model) async => await model.init(),
       builder: (BuildContext context, WantItViewModel model, Widget? child) {
         return Scaffold(
@@ -28,10 +28,10 @@ class WantItView extends StatelessWidget {
               WantItHeaderWidget(model: model),
               Expanded(
                   child: SingleChildScrollView(
-                child: Column(children: const [
-                  WantItAboutMeWidget(),
-                  WantItWhyIWantToAdoptItWidget(),
-                  WantItButtonWidget(),
+                child: Column(children: [
+                  WantItAboutMeWidget(model),
+                  WantItWhyIWantToAdoptItWidget(model),
+                  WantItButtonWidget(model),
                 ]),
               ))
             ],

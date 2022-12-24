@@ -20,7 +20,7 @@ class FoundItView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<FoundItViewModel>.reactive(
-      viewModelBuilder: () => FoundItViewModel(context),
+      viewModelBuilder: () => FoundItViewModel(context, post),
       onModelReady: (FoundItViewModel model) async => await model.init(),
       builder: (BuildContext context, FoundItViewModel model, Widget? child) {
         return Scaffold(
@@ -32,8 +32,8 @@ class FoundItView extends StatelessWidget {
                   child: Column(
                     children: [
                       FoundItImageWidget(model: model),
-                      const FoundItDescriptionWidget(),
-                      const FoundItButtonWidget()
+                      FoundItDescriptionWidget(model),
+                      FoundItButtonWidget(model: model)
                     ],
                   ),
                 ),
