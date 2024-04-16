@@ -1,3 +1,11 @@
+This is my Senior Project for the university. My main job was
+- to be responsible of the overall result
+- Documentation of the project and research.
+- Designing the Database structure
+- Designing the UI/UX of the Mobile Application
+- Implementing the UI/UX in Flutter.
+- Testing the Application.
+
 ## flutter sdk
 
 - Flutter (Channel stable, 3.3.9, on macOS 13.0.1 22A400 darwin-arm, locale en-BH)
